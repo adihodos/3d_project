@@ -1,5 +1,9 @@
 #include "pch_hdr.h"
 #include "d3d_renderer.h"
+#include "directx_index_buffer.h"
+#include "directx_input_layout.h"
+#include "directx_vertex_buffer.h"
+#include "primitive_topology_types.h"
 #include "scoped_ptr.h"
 #include "utility.h"
 #include "win32_traits.h"
@@ -35,9 +39,46 @@ public :
     bool create_depth_stencil_buffer_and_views();
 
     bool bind_to_output_merger_stage();
+
+    D3D11_PRIMITIVE_TOPOLOGY map_topology_enum_to_api_enum(
+      int topology_type
+      );
 };
 
-void game::renderer::implementation_details::release_resources_before_buffer_resize() {
+D3D11_PRIMITIVE_TOPOLOGY 
+game::renderer::implementation_details::map_topology_enum_to_api_enum(
+  int topology_type
+  )
+{
+  switch (topology_type) {
+  case outer_limits::primitive_topology_point_list :
+    return D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
+    break;
+
+  case outer_limits::primitive_topology_line_list :
+    return D3D11_PRIMITIVE_TOPOLOGY_LINELIST;
+    break;
+
+  case outer_limits::primitive_topology_line_strip :
+    return D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP;
+    break;
+
+  case outer_limits::primitive_topology_triangle_list :
+    return D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+    break;
+
+  case outer_limits::primitive_topology_triangle_strip :
+    return D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+    break;
+
+  default :
+    return D3D11_PRIMITIVE_TOPOLOGY_UNDEFINED;
+    break;
+  }
+}
+
+void 
+game::renderer::implementation_details::release_resources_before_buffer_resize() {
     d3d11device_ctx_->OMSetRenderTargets(0, nullptr, nullptr);
     scoped_ptr_reset(depthstencilview_);
     scoped_ptr_reset(depthstencil_texture_);
@@ -300,4 +341,66 @@ ID3D11Device* game::renderer::get_device() const {
 
 ID3D11DeviceContext* game::renderer::get_device_context() const {
     return base::scoped_ptr_get(impl_->d3d11device_ctx_);
+}
+
+void game::renderer::ia_stage_set_vertex_buffers(
+    unsigned start_slot,
+    unsigned buffer_count,
+    const outer_limits::directx_vertexbuffer* buffers,
+    const unsigned* strides,
+    const unsigned* offsets
+    )
+{
+  std::vector<ID3D11Buffer*> buffers_array(buffer_count);
+  std::transform(
+    buffers, buffers + buffer_count, 
+    std::begin(buffers_array),
+    [](const outer_limits::directx_vertexbuffer& vxbuff) {
+      return vxbuff.get_buffer_handle();
+  });
+  
+  impl_->d3d11device_ctx_->IASetVertexBuffers(
+    start_slot, buffer_count, &buffers_array[0], strides, offsets
+    );
+}
+
+void game::renderer::ia_stage_set_index_buffer(
+  const outer_limits::directx_index_buffer* index_buffer,
+  unsigned offset
+  )
+{
+  impl_->d3d11device_ctx_->IASetIndexBuffer(
+    index_buffer->get_buffer_handle(),
+    index_buffer->get_element_format(),
+    offset
+    );
+}
+
+void game::renderer::ia_stage_set_input_layout(
+  const outer_limits::directx_input_layout* input_layout
+  )
+{
+  impl_->d3d11device_ctx_->IASetInputLayout(input_layout->get_layout_handle());
+}
+
+void game::renderer::ia_stage_set_primitive_topology(
+  int type
+  )
+{
+  impl_->d3d11device_ctx_->IASetPrimitiveTopology(
+    impl_->map_topology_enum_to_api_enum(type)
+    );
+}
+
+void game::renderer::draw(unsigned vertex_count, unsigned offset) {
+  impl_->d3d11device_ctx_->Draw(vertex_count, offset);
+}
+
+void game::renderer::draw_indexed(
+  unsigned index_count, 
+  unsigned index_offset, 
+  int index_add
+  )
+{
+  impl_->d3d11device_ctx_->DrawIndexed(index_count, index_offset, index_add);
 }

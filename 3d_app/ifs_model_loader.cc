@@ -25,7 +25,7 @@ base::model_format_handlers::IFSLoader::readFloat(
     ) 
 {
     DWORD bytesRead;
-    return ::ReadFile(fptr, outVal, sizeof(float), &bytesRead, 0);
+    return ::ReadFile(fptr, outVal, sizeof(float), &bytesRead, 0) == TRUE;
 }
 
 bool 

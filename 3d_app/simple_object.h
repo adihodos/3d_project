@@ -1,7 +1,12 @@
 #pragma once
 
+#include <gfx/matrix4X4.h>
 #include "misc.h"
 #include "scoped_ptr.h"
+
+namespace game {
+  class renderer;
+}
 
 namespace test {
 
@@ -16,9 +21,9 @@ public :
 
     ~simple_object();
 
-    void initialize();
+    void initialize(game::renderer* r);
 
-    void draw();
+    void draw(game::renderer*, const gfx::matrix_4X4F&);
 };
 
 }

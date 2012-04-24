@@ -72,6 +72,51 @@
     <ClInclude Include="renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="uniform_buffer_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_misc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_fragment_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_vertex_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vertex_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fragment_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_vertex_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_buffer_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_index_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vertex_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="index_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="directx_input_layout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input_layout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive_topology_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch_hdr.cc">
@@ -102,6 +147,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ifs_model_loader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uniform_buffer_directx.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_shader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_misc.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_fragment_shader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_vertex_shader.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_buffer_impl.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directx_input_layout.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

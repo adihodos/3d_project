@@ -4,7 +4,14 @@
 #include "misc.h"
 #include "scoped_ptr.h"
 
+namespace outer_limits {
+  class directx_vertexbuffer;
+  class directx_index_buffer;
+  class directx_input_layout;
+}
+
 namespace game {
+
 
 class renderer : public base::singleton_life_traits<renderer>  {
 private :
@@ -55,6 +62,35 @@ public :
     ID3D11Device* get_device() const;
 
     ID3D11DeviceContext* get_device_context() const;
+
+    void ia_stage_set_vertex_buffers(
+      unsigned start_slot,
+      unsigned buffer_count,
+      const outer_limits::directx_vertexbuffer* buffers,
+      const unsigned* strides,
+      const unsigned* offsets = nullptr
+      );
+
+    void ia_stage_set_index_buffer(
+      const outer_limits::directx_index_buffer* index_buffer,
+      unsigned offset = 0U
+      );
+
+    void ia_stage_set_input_layout(
+      const outer_limits::directx_input_layout*
+      );
+
+    void ia_stage_set_primitive_topology(
+      int topology
+      );
+
+    void draw(unsigned vertex_count, unsigned offset = 0U);
+
+    void draw_indexed(
+      unsigned index_count, 
+      unsigned index_offset = 0U, 
+      int index_add = 0
+      );
 };
 
 typedef base::lazy_singleton<renderer> renderer_instance_t;

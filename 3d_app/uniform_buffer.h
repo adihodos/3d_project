@@ -5,7 +5,7 @@
 
 #include "uniform_buffer_directx.h"
 
-namespace renderer {
+namespace outer_limits {
 
 template<typename T>
 struct ubuff_rebind {

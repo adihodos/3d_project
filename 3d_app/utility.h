@@ -42,6 +42,14 @@ void output_debug_string(
     } while (0)
 #endif
 
+#ifndef NOT_REACHED_MSGA
+#define NOT_REACHED_MSGA(msg, ...)   \
+    do {                            \
+        utility::output_debug_string(__FILE__, __LINE__, msg, ##__VA_ARGS__); \
+        __debugbreak(); \
+    } while (0)
+#endif
+
 #ifndef WIN32_CHK_FNCALL
 #define WIN32_CHK_FNCALL(ret_code_ptr, func_and_args) \
     do {                            \

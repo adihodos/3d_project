@@ -99,7 +99,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;dxgi.lib;gfx_lib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;dxerr.lib;dxgi.lib;dxguid.lib;gfx_lib_d.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -155,19 +155,34 @@
     <ClInclude Include="atexit_manager.h" />
     <ClInclude Include="constant_buffer.h" />
     <ClInclude Include="d3d_renderer.h" />
+    <ClInclude Include="directx_buffer_impl.h" />
+    <ClInclude Include="directx_fragment_shader.h" />
+    <ClInclude Include="directx_index_buffer.h" />
+    <ClInclude Include="directx_input_layout.h" />
+    <ClInclude Include="directx_misc.h" />
+    <ClInclude Include="directx_shader.h" />
+    <ClInclude Include="directx_vertex_buffer.h" />
+    <ClInclude Include="directx_vertex_shader.h" />
+    <ClInclude Include="fragment_shader.h" />
     <ClInclude Include="ifs_model_loader.h" />
+    <ClInclude Include="index_buffer.h" />
+    <ClInclude Include="input_layout.h" />
     <ClInclude Include="interface_drawable.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="lazy_singleton.h" />
     <ClInclude Include="pch_hdr.h" />
+    <ClInclude Include="primitive_topology_types.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene_manager.h" />
     <ClInclude Include="scoped_ptr.h" />
     <ClInclude Include="simple_object.h" />
     <ClInclude Include="uniform_buffer.h" />
+    <ClInclude Include="uniform_buffer_base.h" />
     <ClInclude Include="uniform_buffer_directx.h" />
     <ClInclude Include="utility.h" />
+    <ClInclude Include="vertex_buffer.h" />
+    <ClInclude Include="vertex_shader.h" />
     <ClInclude Include="win32_traits.h" />
     <ClInclude Include="win32_utils.h" />
     <ClInclude Include="window.h" />
@@ -175,6 +190,12 @@
   <ItemGroup>
     <ClCompile Include="atexit_manager.cc" />
     <ClCompile Include="d3d_renderer.cc" />
+    <ClCompile Include="directx_buffer_impl.cc" />
+    <ClCompile Include="directx_fragment_shader.cc" />
+    <ClCompile Include="directx_input_layout.cc" />
+    <ClCompile Include="directx_misc.cc" />
+    <ClCompile Include="directx_shader.cc" />
+    <ClCompile Include="directx_vertex_shader.cc" />
     <ClCompile Include="ifs_model_loader.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="pch_hdr.cc">
@@ -182,6 +203,7 @@
     </ClCompile>
     <ClCompile Include="scene.cc" />
     <ClCompile Include="simple_object.cc" />
+    <ClCompile Include="uniform_buffer_directx.cc" />
     <ClCompile Include="utility.cc" />
     <ClCompile Include="win32_utils.cc" />
     <ClCompile Include="window.cc" />
