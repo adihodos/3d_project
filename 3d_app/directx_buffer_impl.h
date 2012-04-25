@@ -55,6 +55,7 @@ protected :
     buffer_traits_t::buffer_usage_flags use_flag
     );
 
+public :
   void update_data(
     game::renderer* renderer,
     const void* data,

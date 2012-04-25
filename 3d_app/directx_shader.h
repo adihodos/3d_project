@@ -49,9 +49,9 @@ protected :
     unsigned int compile_flags
     );
 
-public :
   directx_shader(const char* name) : shader_name_(name) {}
 
+public :
   virtual ~directx_shader() {}
 
   virtual bool compile_from_file(

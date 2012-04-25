@@ -10,9 +10,6 @@ private :
   NO_CC_ASSIGN(directx_index_buffer);
 
 public :
-  using directx_buffer_impl::get_buffer_handle;
-  using directx_buffer_impl::update_data;
-
   directx_index_buffer() {}
 
   bool initialize(
@@ -31,16 +28,6 @@ public :
   DXGI_FORMAT get_element_format() const {
     return DXGI_FORMAT_R32_UINT;
   }
-
-  /*
-  void update_data(
-    game::renderer* renderer,
-    const void* data,
-    size_t size
-    ) {
-      directx_buffer_impl::update_data(renderer, data, size);
-  }
-  */
 };
 
 typedef directx_index_buffer index_buffer_t;

@@ -21,10 +21,9 @@ protected :
 
   void sync_with_gpu(game::renderer*, const void*);
 
-  ~uniform_buffer_dxbase() {}
-
-public :
   uniform_buffer_dxbase(const char* name) : name_(name) {}
+public :  
+  ~uniform_buffer_dxbase() {}
 
   unsigned int get_binding_slot() const {
     return bind_slot_;
